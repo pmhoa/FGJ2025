@@ -1,1 +1,5 @@
+<<<<<<< HEAD
 ﻿{"cameraMode":{"drawMode":0,"name":"Shaded","section":"Shading Mode"},"sceneLighting":true,"audioPlay":false,"sceneViewState":{"m_AlwaysRefresh":false,"showFog":true,"showSkybox":true,"showFlares":true,"showImageEffects":true,"showParticleSystems":true,"showVisualEffectGraphs":true,"m_FxEnabled":true},"in2DMode":false,"pivot":{"x":-1.934367060661316,"y":-2.490037679672241,"z":1.5313702821731568},"rotation":{"x":-0.2959982752799988,"y":0.6469368934631348,"z":-0.30171000957489016,"w":-0.6346887350082398},"size":13.376459121704102,"orthographic":false}
+=======
+﻿{"cameraMode":{"drawMode":0,"name":"Shaded","section":"Shading Mode"},"sceneLighting":true,"audioPlay":false,"sceneViewState":{"m_AlwaysRefresh":false,"showFog":true,"showSkybox":true,"showFlares":true,"showImageEffects":true,"showParticleSystems":true,"showVisualEffectGraphs":true,"m_FxEnabled":true},"in2DMode":false,"pivot":{"x":-1.4845249652862549,"y":-0.5668952465057373,"z":-4.048710346221924},"rotation":{"x":-0.25102582573890688,"y":-0.02265114337205887,"z":0.005875912960618734,"w":-0.9677020311355591},"size":10.91772747039795,"orthographic":false}
+>>>>>>> origin/Niklas
