@@ -9,6 +9,7 @@ public class FollowCursorAtDistanceWithSpawnAndShoot : MonoBehaviour
     public float projectileSpeed = 10f; // Speed at which the projectile moves
     public int chosenWeapon = 1;
     public GameObject foamToSpawn;
+    public float foamShootRate = 0.1f;
 
     private Coroutine shootingCoroutine;
 
@@ -86,7 +87,7 @@ public class FollowCursorAtDistanceWithSpawnAndShoot : MonoBehaviour
             transform.position = targetPosition;
 
             SpawnExplosiveArea(targetPosition, directionToCursor);
-            yield return new WaitForSeconds(0.1f); // Wait for 0.1 seconds before shooting again
+            yield return new WaitForSeconds(foamShootRate); // Wait for 0.1 seconds before shooting again
         }
     }
     // Method to spawn and shoot a projectile towards the cursor
