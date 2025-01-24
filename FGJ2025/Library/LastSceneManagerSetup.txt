@@ -1,5 +1,0 @@
-sceneSetups:
-- path: "Assets/Set\xE4mies69/Hoa_Scene.unity"
-  isLoaded: 1
-  isActive: 1
-  isSubScene: 0
