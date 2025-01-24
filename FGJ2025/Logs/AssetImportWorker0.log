@@ -237,3 +237,12 @@ Start importing Assets/Setämies69/Prefabs/Pahvi_Puu.prefab using Guid(b2312bcb9
  -> (artifact id: 'e532dbe222d8361127c3b2e05b9b2662') in 0.018694 seconds
 Number of updated asset objects reloaded before import = 0
 Number of asset objects unloaded after import = 19
+========================================================================
+Received Import Request.
+  Time since last request: 51.897463 seconds.
+  path: Assets/Setämies69/Hoa_Scene.unity
+  artifactKey: Guid(a489c6ba58ecf8e44a4cc8128a6be482) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Setämies69/Hoa_Scene.unity using Guid(a489c6ba58ecf8e44a4cc8128a6be482) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+ -> (artifact id: '241805b85466d7352cfd492cc26575d7') in 0.000725 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
