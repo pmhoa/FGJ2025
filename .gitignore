@@ -2,7 +2,7 @@
 #
 # Get latest from https://github.com/github/gitignore/blob/main/Unity.gitignore
 #
-/[Ll]ibrary/
+FGJ2025/[Ll]ibrary/
 /[Tt]emp/
 /[Oo]bj/
 /[Bb]uild/
@@ -11,7 +11,7 @@
 /[Uu]ser[Ss]ettings/
 # Ignore the Temp and Library folders
 Temp/
-Library/
+/Library/
 .obj/
 
 
