@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class FollowCursorAtDistanceWithSpawnAndShoot : MonoBehaviour
 {
@@ -8,6 +9,10 @@ public class FollowCursorAtDistanceWithSpawnAndShoot : MonoBehaviour
     public float projectileSpeed = 10f; // Speed at which the projectile moves
     public int chosenWeapon = 1;
     public GameObject foamToSpawn;
+
+    private Coroutine shootingCoroutine;
+
+
 
     void Update()
     {
@@ -41,12 +46,49 @@ public class FollowCursorAtDistanceWithSpawnAndShoot : MonoBehaviour
 
             else if (chosenWeapon == 2)
             {
-                SpawnExplosiveArea(targetPosition, directionToCursor);
+                //SpawnExplosiveArea(targetPosition, directionToCursor);
+                if(shootingCoroutine == null)
+                {
+                    shootingCoroutine = StartCoroutine(ShootExplosiveArea());
+                }
+                
             }
             
         }
+        if (Input.GetMouseButtonUp(0) && chosenWeapon == 2)
+        {
+            if (shootingCoroutine != null)
+            {
+                StopCoroutine(shootingCoroutine); // Stop shooting when the mouse button is released
+                shootingCoroutine = null;
+            }
+        }
     }
+    private IEnumerator ShootExplosiveArea()
+    {
+        while (true)
+        {
+            Vector3 mousePosition = Input.mousePosition;
+            mousePosition.z = Camera.main.WorldToScreenPoint(player.position).z; // Set the z to be the same as the player's position
+            Vector3 worldMousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
+            Vector3 directionToCursor = worldMousePosition - player.position;
 
+            // Set the y component to 0 to avoid tilting up or down
+            directionToCursor.y = 0;
+
+            // Normalize the direction vector to get a unit vector
+            directionToCursor.Normalize();
+
+            // Calculate the position 2 units away from the player in the direction of the cursor
+            Vector3 targetPosition = player.position + directionToCursor * distanceFromPlayer;
+
+            // Set the object's position to the target position
+            transform.position = targetPosition;
+
+            SpawnExplosiveArea(targetPosition, directionToCursor);
+            yield return new WaitForSeconds(0.1f); // Wait for 0.1 seconds before shooting again
+        }
+    }
     // Method to spawn and shoot a projectile towards the cursor
     void SpawnAndShootProjectile(Vector3 spawnPosition, Vector3 shootDirection)
     {
