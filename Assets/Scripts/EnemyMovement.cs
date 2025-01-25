@@ -25,6 +25,7 @@ public class EnemyMovement : MonoBehaviour
         if (other.CompareTag("Bullet"))
         {
             TakeDamage(bulletDamage);
+            Destroy(other.gameObject);
         }
     }
 
