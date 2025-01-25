@@ -6,12 +6,15 @@ public class PlayerMovement : MonoBehaviour
     public float moveSpeed = 5f;  // Speed of the player
     public float gravity = -9.8f; // Gravity for the player
     public float jumpHeight = 2f; // Jump height
-    int health = 3;
-    int gameEndDelay = 3;
+    public int health = 3;
+    public int gameEndDelay = 3;
     [SerializeField]
     Animator animator;
+    [SerializeField]
+    private GameObject deadFace;
 
     private bool flipCharacter;
+    private bool dead;
     private CharacterController characterController;
     private Vector3 velocity;
     private bool isGrounded;
@@ -23,6 +26,7 @@ public class PlayerMovement : MonoBehaviour
     {
         characterController = GetComponent<CharacterController>();
         flipCharacter = false;
+        dead = false;
     }
 
     void Update()
@@ -34,52 +38,57 @@ public class PlayerMovement : MonoBehaviour
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
 
-        // Calculate the movement vector
-        Vector3 move = new Vector3(horizontal, 0f, vertical).normalized;
-
-        if (move.x < 0 && flipCharacter == false)
+        if (dead == false)
         {
-            animator.gameObject.transform.localScale = new Vector3(-0.5f, 0.5f, 0.5f);
-            flipCharacter = true;
+            // Calculate the movement vector
+            Vector3 move = new Vector3(horizontal, 0f, vertical).normalized;
+
+            if (move.x < 0 && flipCharacter == false)
+            {
+                animator.gameObject.transform.localScale = new Vector3(-0.5f, 0.5f, 0.5f);
+                flipCharacter = true;
+            }
+            else if (move.x > 0 && flipCharacter == true)
+            {
+                animator.gameObject.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+                flipCharacter = false;
+            }
+
+            // Apply movement directly in the input direction (WASD controls)
+            characterController.Move(move * moveSpeed * Time.deltaTime);
+
+            // If there is movement, snap the player to face the cursor
+            FaceTowardsCursor();
+
+            // Handle gravity
+            if (isGrounded && velocity.y < 0)
+            {
+                velocity.y = -2f; // Keep the player grounded
+            }
+
+            // Jump
+            //if (isGrounded && Input.GetButtonDown("Jump"))
+            //{
+            //    velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+            //}
+
+            // Apply gravity to the vertical velocity
+            velocity.y += gravity * Time.deltaTime;
+
+            // Apply vertical movement (gravity and jumping)
+            characterController.Move(velocity * Time.deltaTime);
+
+            if (health <= 0)
+            {
+                dead = true;
+                deathCorotine = StartCoroutine(DeathRoutine());
+            }
+            animator.SetFloat("Speed", Mathf.Abs(move.x));
+            animator.SetFloat("SpeedVertical", Mathf.Abs(move.z));
         }
-        else if (move.x > 0 && flipCharacter == true)
-        {
-            animator.gameObject.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
-            flipCharacter = false;
-        }
 
-        // Apply movement directly in the input direction (WASD controls)
-        characterController.Move(move * moveSpeed * Time.deltaTime);
+        animator.SetBool("Dead", dead);
 
-        // If there is movement, snap the player to face the cursor
-        FaceTowardsCursor();
-
-        // Handle gravity
-        if (isGrounded && velocity.y < 0)
-        {
-            velocity.y = -2f; // Keep the player grounded
-        }
-
-        // Jump
-        //if (isGrounded && Input.GetButtonDown("Jump"))
-        //{
-        //    velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
-        //}
-
-        // Apply gravity to the vertical velocity
-        velocity.y += gravity * Time.deltaTime;
-
-        // Apply vertical movement (gravity and jumping)
-        characterController.Move(velocity * Time.deltaTime);
-
-        if (health <= 0)
-        {
-            deathCorotine = StartCoroutine(DeathRoutine());
-        }
-
-        animator.SetFloat("Speed", Mathf.Abs(move.x));
-        animator.SetFloat("SpeedVertical", Mathf.Abs(move.z));
-        Debug.Log(Mathf.Abs(move.x));
     }
 
     // Function to make the player face the cursor
@@ -108,8 +117,9 @@ public class PlayerMovement : MonoBehaviour
 
     private IEnumerator DeathRoutine()
     {
-            yield return new WaitForSeconds(gameEndDelay);
-            endGameObject.SetActive(true);
+        deadFace.SetActive(true);    
+        yield return new WaitForSeconds(gameEndDelay);
+            //endGameObject.SetActive(true);
     }
 
     private void OnTriggerEnter(Collider other)
