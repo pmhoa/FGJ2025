@@ -6065,7 +6065,7 @@ ScriptedImporter:
   mosaicLayers: 1
   characterMode: 1
   documentPivot: {x: 0.5, y: 0.13}
-  documentAlignment: 7
+  documentAlignment: 9
   importHiddenLayers: 0
   layerMappingOption: 2
   generatePhysicsShape: 0
