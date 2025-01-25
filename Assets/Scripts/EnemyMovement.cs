@@ -9,14 +9,17 @@ public class EnemyMovement : MonoBehaviour
     private float health;
     [SerializeField]
     private float bulletDamage;
+    [SerializeField]
+    private float floatingSpeed;
 
     private NavMeshAgent enemy;
     private GameObject player;
+    private bool dead;
 
     void Start()
     {
         enemy = GetComponent<NavMeshAgent>();
-
+        dead = false;
         player = GameObject.FindWithTag("Player");
     }
 
@@ -31,7 +34,14 @@ public class EnemyMovement : MonoBehaviour
 
     void Update()
     {
-        enemy.destination = player.transform.position;
+        if (dead == false)
+        { 
+            enemy.destination = player.transform.position; 
+        }
+        else
+        {
+            transform.Translate(Vector3.up * Time.deltaTime * floatingSpeed, Space.World);
+        }
     }
 
     void TakeDamage( float damageAmount)
@@ -47,6 +57,9 @@ public class EnemyMovement : MonoBehaviour
     void Die()
     {
         enemy.isStopped = true;
+        dead = true;
+        enemy.enabled = false;
+        gameObject.GetComponent<Collider>().enabled = false;
         Destroy(gameObject, 5);
     }
 }

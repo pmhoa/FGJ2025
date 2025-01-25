@@ -71,6 +71,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 100
   bulletDamage: 50
+  floatingSpeed: 5
 --- !u!65 &-5380030424831394515
 BoxCollider:
   m_ObjectHideFlags: 0
