@@ -176,10 +176,6 @@ public class FollowCursorAtDistanceWithSpawnAndShoot : MonoBehaviour
         }
     }
 
-    void InstantiateObject()
-    {
-        hasExploded = true;
-    }
 
 
 
@@ -277,6 +273,7 @@ public class FollowCursorAtDistanceWithSpawnAndShoot : MonoBehaviour
 
             // Calculate the position 2 units away from the player in the direction of the cursor
             Vector3 targetPosition = player.position + directionToCursor * distanceFromPlayer;
+            targetPosition.y = targetPosition.y + distanceFromPlayerY;
 
             // Set the object's position to the target position
             transform.position = targetPosition;
@@ -325,6 +322,7 @@ public class FollowCursorAtDistanceWithSpawnAndShoot : MonoBehaviour
 
             // Calculate the position 2 units away from the player in the direction of the cursor
             Vector3 targetPosition = player.position + directionToCursor * distanceFromPlayer;
+            targetPosition.y = targetPosition.y + distanceFromPlayerY;
 
             // Set the object's position to the target position
             transform.position = targetPosition;
