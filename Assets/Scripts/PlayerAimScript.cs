@@ -4,7 +4,7 @@ using System.Collections;
 public class FollowCursorAtDistanceWithSpawnAndShoot : MonoBehaviour
 {
     public Transform player; // Reference to the player's transform
-    public GameObject objectToSpawn; // The projectile you want to spawn
+    public GameObject basicKuplaPrefab; // The projectile you want to spawn
     public float distanceFromPlayer = 2f; // Distance away from the player (in units)
     public float projectileSpeed = 10f; // Speed at which the projectile moves
     public int chosenWeapon = 1;
@@ -15,8 +15,51 @@ public class FollowCursorAtDistanceWithSpawnAndShoot : MonoBehaviour
 
 
 
+    public GameObject minePrefab;    // The projectile prefab to be shot
+    public Transform shootingPoint;    // The point where the object will be spawned
+    public float launchAngle = 45f;
+    public float maxRange = 50f;
+
+
+
     void Update()
     {
+
+
+
+
+        if (Input.GetKeyDown(KeyCode.Alpha1))  // Key 1 pressed
+        {
+            chosenWeapon = 1;
+            Debug.Log("Value changed to: " + chosenWeapon);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha2))  // Key 2 pressed
+        {
+            chosenWeapon = 2;
+            Debug.Log("Value changed to: " + chosenWeapon);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha3))  // Key 3 pressed
+        {
+            chosenWeapon = 3;
+            Debug.Log("Value changed to: " + chosenWeapon);
+        }
+        //if (Input.GetKeyDown(KeyCode.Alpha4))  // Key 4 pressed
+        //{
+        //    chosenWeapon = 4;
+        //    Debug.Log("Value changed to: " + chosenWeapon);
+        //}
+
+
+
+
+
+
+
+
+
+
+
+
         // Get the position of the mouse in world space (on the ground plane)
         Vector3 mousePosition = Input.mousePosition;
         mousePosition.z = Camera.main.WorldToScreenPoint(player.position).z; // Set the z to be the same as the player's position
@@ -54,6 +97,10 @@ public class FollowCursorAtDistanceWithSpawnAndShoot : MonoBehaviour
                 }
                 
             }
+            else if (chosenWeapon == 3)
+            {
+                ShootMine();
+            }
             
         }
         if (Input.GetMouseButtonUp(0) && chosenWeapon == 2)
@@ -65,6 +112,81 @@ public class FollowCursorAtDistanceWithSpawnAndShoot : MonoBehaviour
             }
         }
     }
+
+
+    void ShootMine()
+    {
+        // Perform a raycast from the camera to the mouse position
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
+
+        // Determine the target position
+        Vector3 targetPoint;
+        if (Physics.Raycast(ray, out hit))
+        {
+            targetPoint = hit.point;
+
+            // Check if the target is within range
+            float distanceToTarget = Vector3.Distance(shootingPoint.position, targetPoint);
+            if (distanceToTarget > maxRange)
+            {
+                // Adjust the target to the maximum range in the direction of the cursor
+                Vector3 direction = (targetPoint - shootingPoint.position).normalized;
+                targetPoint = shootingPoint.position + direction * maxRange;
+            }
+        }
+        else
+        {
+            // If the raycast doesn't hit anything, shoot to the max range in the cursor's direction
+            Vector3 direction = ray.direction.normalized;
+            targetPoint = shootingPoint.position + direction * maxRange;
+        }
+
+        // Spawn the projectile at the shooting point
+        GameObject projectile = Instantiate(minePrefab, shootingPoint.position, Quaternion.identity);
+
+        // Calculate the velocity required to launch the projectile in an arc
+        Vector3 velocity = CalculateLaunchVelocity(shootingPoint.position, targetPoint, launchAngle);
+
+        // Add the velocity to the projectile's Rigidbody
+        Rigidbody rb = projectile.GetComponent<Rigidbody>();
+        if (rb != null)
+        {
+            rb.velocity = velocity;
+        }
+    }
+
+    Vector3 CalculateLaunchVelocity(Vector3 start, Vector3 target, float angle)
+    {
+        // Convert the angle to radians
+        float radianAngle = angle * Mathf.Deg2Rad;
+
+        // Calculate the horizontal and vertical distances
+        Vector3 direction = target - start;
+        float horizontalDistance = new Vector3(direction.x, 0, direction.z).magnitude;
+        float verticalDistance = direction.y;
+
+        // Calculate the velocity needed to reach the target
+        float gravity = Physics.gravity.y;
+        float speedSquared = (horizontalDistance * horizontalDistance * gravity) /
+                             (2 * (verticalDistance - Mathf.Tan(radianAngle) * horizontalDistance) * Mathf.Cos(radianAngle) * Mathf.Cos(radianAngle));
+        if (speedSquared <= 0)
+        {
+            Debug.LogError("No solution found for the given angle and target position.");
+            return Vector3.zero;
+        }
+        float speed = Mathf.Sqrt(Mathf.Abs(speedSquared));
+
+        // Calculate the velocity components
+        Vector3 velocity = new Vector3(direction.x, 0, direction.z).normalized;
+        velocity *= speed * Mathf.Cos(radianAngle);
+        velocity.y = speed * Mathf.Sin(radianAngle);
+
+        return velocity;
+    }
+
+
+
     private IEnumerator ShootExplosiveArea()
     {
         while (true)
@@ -93,10 +215,10 @@ public class FollowCursorAtDistanceWithSpawnAndShoot : MonoBehaviour
     // Method to spawn and shoot a projectile towards the cursor
     void SpawnAndShootProjectile(Vector3 spawnPosition, Vector3 shootDirection)
     {
-        if (objectToSpawn != null)
+        if (basicKuplaPrefab != null)
         {
             // Instantiate the projectile at the target position with no rotation
-            GameObject projectile = Instantiate(objectToSpawn, spawnPosition, Quaternion.identity);
+            GameObject projectile = Instantiate(basicKuplaPrefab, spawnPosition, Quaternion.identity);
 
             // Add a Rigidbody to the projectile if it doesn't have one (you can remove this if your projectile already has a Rigidbody)
             Rigidbody rb = projectile.GetComponent<Rigidbody>();
