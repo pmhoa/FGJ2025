@@ -443,7 +443,7 @@ PrefabInstance:
       objectReference: {fileID: 1165153768}
     - target: {fileID: 1022965770858820101, guid: 80786c98f0946cd4db0d61261caab9cc, type: 3}
       propertyPath: chosenWeapon
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4724055647412154022, guid: 80786c98f0946cd4db0d61261caab9cc, type: 3}
       propertyPath: m_LocalPosition.x

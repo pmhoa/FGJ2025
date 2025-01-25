@@ -66,6 +66,7 @@ public class PlayerMovement : MonoBehaviour
         characterController.Move(velocity * Time.deltaTime);
 
         animator.SetFloat("Speed", Mathf.Abs(move.x));
+        animator.SetFloat("SpeedVertical", Mathf.Abs(move.z));
         Debug.Log(Mathf.Abs(move.x));
     }
 
