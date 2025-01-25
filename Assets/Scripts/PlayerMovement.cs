@@ -1,22 +1,24 @@
 using UnityEngine;
 
+using System.Collections;
 public class PlayerMovement : MonoBehaviour
 {
     public float moveSpeed = 5f;  // Speed of the player
     public float gravity = -9.8f; // Gravity for the player
     public float jumpHeight = 2f; // Jump height
-    [SerializeField]
-    Animator animator;
-    private bool flipCharacter;
+    int health = 3;
+    int gameEndDelay = 3;
 
     private CharacterController characterController;
     private Vector3 velocity;
     private bool isGrounded;
+    private Coroutine deathCorotine;
+
+    public GameObject endGameObject;
 
     void Start()
     {
         characterController = GetComponent<CharacterController>();
-        flipCharacter = false;
     }
 
     void Update()
@@ -30,16 +32,6 @@ public class PlayerMovement : MonoBehaviour
 
         // Calculate the movement vector
         Vector3 move = new Vector3(horizontal, 0f, vertical).normalized;
-        if (move.x < 0 && flipCharacter == false)
-        {
-            animator.gameObject.transform.localScale = new Vector3(-0.5f, 0.5f, 0.5f);
-            flipCharacter = true;
-        }
-        else if (move.x > 0 && flipCharacter == true)
-        {
-            animator.gameObject.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
-            flipCharacter = false;
-        }
 
         // Apply movement directly in the input direction (WASD controls)
         characterController.Move(move * moveSpeed * Time.deltaTime);
@@ -54,10 +46,10 @@ public class PlayerMovement : MonoBehaviour
         }
 
         // Jump
-        if (isGrounded && Input.GetButtonDown("Jump"))
-        {
-            velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
-        }
+        //if (isGrounded && Input.GetButtonDown("Jump"))
+        //{
+        //    velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+        //}
 
         // Apply gravity to the vertical velocity
         velocity.y += gravity * Time.deltaTime;
@@ -65,9 +57,10 @@ public class PlayerMovement : MonoBehaviour
         // Apply vertical movement (gravity and jumping)
         characterController.Move(velocity * Time.deltaTime);
 
-        animator.SetFloat("Speed", Mathf.Abs(move.x));
-        animator.SetFloat("SpeedVertical", Mathf.Abs(move.z));
-        Debug.Log(Mathf.Abs(move.x));
+        if (health <= 0)
+        {
+            deathCorotine = StartCoroutine(DeathRoutine());
+        }
     }
 
     // Function to make the player face the cursor
@@ -89,6 +82,22 @@ public class PlayerMovement : MonoBehaviour
         {
             Quaternion targetRotation = Quaternion.LookRotation(directionToCursor);
             transform.rotation = targetRotation; // Snap to the direction of the cursor
+        }
+
+        
+    }
+
+    private IEnumerator DeathRoutine()
+    {
+            yield return new WaitForSeconds(gameEndDelay);
+            endGameObject.SetActive(true);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Enemy" || other.tag == "EnemyProjectile")
+        {
+            health--;
         }
     }
 }
