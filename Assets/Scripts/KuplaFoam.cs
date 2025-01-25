@@ -6,6 +6,7 @@ public class KuplaFoam : MonoBehaviour
 {
     private Rigidbody rb;
     public float delayTime = 1f; // Time after which movement will stop
+    public GameObject explosion;
 
     void Start()
     {
@@ -32,6 +33,9 @@ public class KuplaFoam : MonoBehaviour
         {
             rb.velocity = Vector3.zero;
             rb.angularVelocity = Vector3.zero; // Stops rotation if desired
+            //Instantiate(explosion, transform.position, transform.rotation);
+            Destroy(gameObject);
+            
         }
     }
 }
