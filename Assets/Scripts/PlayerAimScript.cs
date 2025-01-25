@@ -9,6 +9,7 @@ public class FollowCursorAtDistanceWithSpawnAndShoot : MonoBehaviour
     public float projectileSpeed = 10f; // Speed at which the projectile moves
     public int chosenWeapon = 1;
     public GameObject foamToSpawn;
+    public float foamShootRate = 0.1f;
 
     private Coroutine shootingCoroutine;
 
@@ -44,7 +45,7 @@ public class FollowCursorAtDistanceWithSpawnAndShoot : MonoBehaviour
                 SpawnAndShootProjectile(targetPosition, directionToCursor);
             }
 
-            else if (chosenWeapon == 2)
+            else if (chosenWeapon == 2) // 2 is foam gun
             {
                 //SpawnExplosiveArea(targetPosition, directionToCursor);
                 if(shootingCoroutine == null)
@@ -86,7 +87,7 @@ public class FollowCursorAtDistanceWithSpawnAndShoot : MonoBehaviour
             transform.position = targetPosition;
 
             SpawnExplosiveArea(targetPosition, directionToCursor);
-            yield return new WaitForSeconds(0.1f); // Wait for 0.1 seconds before shooting again
+            yield return new WaitForSeconds(foamShootRate); // Wait for 0.1 seconds before shooting again
         }
     }
     // Method to spawn and shoot a projectile towards the cursor
@@ -130,9 +131,9 @@ public class FollowCursorAtDistanceWithSpawnAndShoot : MonoBehaviour
             // Introduce a random variation to the X-axis
             float randomX = Random.Range(-0.5f, 0.5f); // Random value between -1 and 1 (you can adjust this range)
             shootDirection.x += randomX;  // Add the random variation to the X-axis
-
+            float randomValue = Random.Range(0.3f, 1f); //This gives the random velocity
             // Set the velocity of the projectile to shoot towards the direction with variation
-            rb.velocity = shootDirection.normalized * projectileSpeed;
+            rb.velocity = shootDirection.normalized * projectileSpeed * randomValue;
         }
         else
         {
