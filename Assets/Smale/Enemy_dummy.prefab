@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8059465285408930825}
   - component: {fileID: 3694165293554995030}
   - component: {fileID: 2871925896172197348}
-  - component: {fileID: -5380030424831394515}
+  - component: {fileID: 8757190190783140357}
   m_Layer: 0
   m_Name: Enemy_dummy
   m_TagString: Enemy
@@ -78,8 +78,8 @@ MonoBehaviour:
   projectile: {fileID: 0}
   projectileSpeed: 0
   animator: {fileID: 2190974149708478465}
---- !u!65 &-5380030424831394515
-BoxCollider:
+--- !u!135 &8757190190783140357
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -93,12 +93,12 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.1, y: 1, z: 1.1}
-  m_Center: {x: 0, y: 1.11, z: 0}
+  m_Radius: 0.8
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1001 &4331292383464302693
 PrefabInstance:
   m_ObjectHideFlags: 0
