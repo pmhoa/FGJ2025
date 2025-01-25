@@ -18,6 +18,7 @@ public class FollowCursorAtDistanceWithSpawnAndShoot : MonoBehaviour
     public float foamShootRate = 0.1f;
 
     private Coroutine shootingCoroutine;
+    private Coroutine basicShootCoroutine;
 
 
 
@@ -98,8 +99,12 @@ public class FollowCursorAtDistanceWithSpawnAndShoot : MonoBehaviour
         {
             if(chosenWeapon == 1 && Time.time >= lastShootTimeBasic + shootCooldownBasic)
             {
-                SpawnAndShootProjectile(targetPosition, directionToCursor);
-                lastShootTimeBasic = Time.time;
+                if(basicShootCoroutine == null)
+                {
+                    basicShootCoroutine = StartCoroutine(ShootBasicHoldDown());
+                }
+                //SpawnAndShootProjectile(targetPosition, directionToCursor);
+                //lastShootTimeBasic = Time.time;
             }
 
             else if (chosenWeapon == 2) // 2 is foam gun
@@ -131,12 +136,17 @@ public class FollowCursorAtDistanceWithSpawnAndShoot : MonoBehaviour
             }
             
         }
-        if (Input.GetMouseButtonUp(0) && chosenWeapon == 2)
+        if (Input.GetMouseButtonUp(0))
         {
-            if (shootingCoroutine != null)
+            if (shootingCoroutine != null && chosenWeapon == 2)
             {
                 StopCoroutine(shootingCoroutine); // Stop shooting when the mouse button is released
                 shootingCoroutine = null;
+            }
+            else if (basicShootCoroutine != null && chosenWeapon == 1)
+            {
+                StopCoroutine(basicShootCoroutine); // Stop shooting when the mouse button is released
+                basicShootCoroutine = null;
             }
         }
     }
@@ -298,7 +308,31 @@ public class FollowCursorAtDistanceWithSpawnAndShoot : MonoBehaviour
             Debug.LogWarning("No object assigned to spawn!");
         }
     }
+    private IEnumerator ShootBasicHoldDown()
+    {
+        while (true)
+        {
+            Vector3 mousePosition = Input.mousePosition;
+            mousePosition.z = Camera.main.WorldToScreenPoint(player.position).z; // Set the z to be the same as the player's position
+            Vector3 worldMousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
+            Vector3 directionToCursor = worldMousePosition - player.position;
 
+            // Set the y component to 0 to avoid tilting up or down
+            directionToCursor.y = 0;
+
+            // Normalize the direction vector to get a unit vector
+            directionToCursor.Normalize();
+
+            // Calculate the position 2 units away from the player in the direction of the cursor
+            Vector3 targetPosition = player.position + directionToCursor * distanceFromPlayer;
+
+            // Set the object's position to the target position
+            transform.position = targetPosition;
+
+            SpawnAndShootProjectile(targetPosition, directionToCursor);
+            yield return new WaitForSeconds(shootCooldownBasic); // Wait for 0.1 seconds before shooting again
+        }
+    }
     void SpawnExplosiveArea(Vector3 spawnPosition, Vector3 shootDirection)
     {
         if (foamToSpawn != null)
