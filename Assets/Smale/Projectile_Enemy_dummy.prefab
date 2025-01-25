@@ -50,7 +50,7 @@ NavMeshAgent:
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 300
-  m_StoppingDistance: 0
+  m_StoppingDistance: 4
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -74,7 +74,7 @@ MonoBehaviour:
   bulletDamage: 50
   floatingSpeed: 10
   projectiles: 1
-  projectileCoolDown: 5
+  projectileCoolDown: 2
   barrel: {fileID: 1155123689179476057}
   projectile: {fileID: 7751838347709124576, guid: bfc7b89e7c67be240901df70473343b8, type: 3}
   projectileSpeed: 20

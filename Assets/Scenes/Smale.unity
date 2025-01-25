@@ -2653,6 +2653,10 @@ PrefabInstance:
       propertyPath: distance
       value: 30
       objectReference: {fileID: 0}
+    - target: {fileID: 2076960321723165358, guid: 739d445dc5991474e9cfaa06faf56848, type: 3}
+      propertyPath: projectileEnemy
+      value: 
+      objectReference: {fileID: 8221810705570773220, guid: 736a4f149c1a40342ab268d60024ee3c, type: 3}
     - target: {fileID: 5310118245848834140, guid: 739d445dc5991474e9cfaa06faf56848, type: 3}
       propertyPath: m_Name
       value: EnemySpawner
@@ -2714,10 +2718,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 986913951189597128, guid: 736a4f149c1a40342ab268d60024ee3c, type: 3}
-      propertyPath: m_StoppingDistance
-      value: 4
-      objectReference: {fileID: 0}
     - target: {fileID: 2740792763292205462, guid: 736a4f149c1a40342ab268d60024ee3c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.44187164
