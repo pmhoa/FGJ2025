@@ -8,7 +8,10 @@ public class PlayerMovement : MonoBehaviour
     public float jumpHeight = 2f; // Jump height
     int health = 3;
     int gameEndDelay = 3;
+    [SerializeField]
+    Animator animator;
 
+    private bool flipCharacter;
     private CharacterController characterController;
     private Vector3 velocity;
     private bool isGrounded;
@@ -19,6 +22,7 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         characterController = GetComponent<CharacterController>();
+        flipCharacter = false;
     }
 
     void Update()
@@ -32,6 +36,17 @@ public class PlayerMovement : MonoBehaviour
 
         // Calculate the movement vector
         Vector3 move = new Vector3(horizontal, 0f, vertical).normalized;
+
+        if (move.x < 0 && flipCharacter == false)
+        {
+            animator.gameObject.transform.localScale = new Vector3(-0.5f, 0.5f, 0.5f);
+            flipCharacter = true;
+        }
+        else if (move.x > 0 && flipCharacter == true)
+        {
+            animator.gameObject.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+            flipCharacter = false;
+        }
 
         // Apply movement directly in the input direction (WASD controls)
         characterController.Move(move * moveSpeed * Time.deltaTime);
@@ -61,6 +76,10 @@ public class PlayerMovement : MonoBehaviour
         {
             deathCorotine = StartCoroutine(DeathRoutine());
         }
+
+        animator.SetFloat("Speed", Mathf.Abs(move.x));
+        animator.SetFloat("SpeedVertical", Mathf.Abs(move.z));
+        Debug.Log(Mathf.Abs(move.x));
     }
 
     // Function to make the player face the cursor
