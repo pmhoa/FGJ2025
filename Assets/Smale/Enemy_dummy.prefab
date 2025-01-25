@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8059465285408930825}
   - component: {fileID: 3694165293554995030}
   - component: {fileID: 2871925896172197348}
+  - component: {fileID: -5380030424831394515}
   m_Layer: 0
   m_Name: Enemy_dummy
   m_TagString: Untagged
@@ -68,7 +69,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83ced96b32da87c4bb58fa06b8f9015f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
+  health: 100
+  bulletDamage: 50
+--- !u!65 &-5380030424831394515
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6021608827202677295}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &9204695331038860220
 GameObject:
   m_ObjectHideFlags: 0
