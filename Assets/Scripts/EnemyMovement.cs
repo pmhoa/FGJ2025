@@ -15,6 +15,9 @@ public class EnemyMovement : MonoBehaviour
     private NavMeshAgent enemy;
     private GameObject player;
     private bool dead;
+    private bool flipCharacter;
+    [SerializeField]
+    private Animator animator;
 
     void Start()
     {
@@ -41,6 +44,17 @@ public class EnemyMovement : MonoBehaviour
         else
         {
             transform.Translate(Vector3.up * Time.deltaTime * floatingSpeed, Space.World);
+        }
+
+        if (enemy.velocity.x > 0 && flipCharacter == false)
+        {
+            animator.gameObject.transform.localScale = new Vector3(-0.5f, 0.5f, 0.5f);
+            flipCharacter = true;
+        }
+        else if (enemy.velocity.x < 0 && flipCharacter == true)
+        {
+            animator.gameObject.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+            flipCharacter = false;
         }
     }
 

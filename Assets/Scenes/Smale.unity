@@ -506,6 +506,22 @@ PrefabInstance:
       propertyPath: animator
       value: 
       objectReference: {fileID: 439761721}
+    - target: {fileID: 2024118031300360175, guid: db44912670538ab4cba65c4f7850deae, type: 3}
+      propertyPath: m_Size.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2024118031300360175, guid: db44912670538ab4cba65c4f7850deae, type: 3}
+      propertyPath: m_Center.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4168986023587614696, guid: db44912670538ab4cba65c4f7850deae, type: 3}
+      propertyPath: m_Height
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4168986023587614696, guid: db44912670538ab4cba65c4f7850deae, type: 3}
+      propertyPath: m_Center.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6286568695857266766, guid: db44912670538ab4cba65c4f7850deae, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
