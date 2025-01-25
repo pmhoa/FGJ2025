@@ -67,7 +67,6 @@ public class PlayerMovement : MonoBehaviour
 
         animator.SetFloat("Speed", Mathf.Abs(move.x));
         animator.SetFloat("SpeedVertical", Mathf.Abs(move.z));
-        Debug.Log(Mathf.Abs(move.x));
     }
 
     // Function to make the player face the cursor

@@ -6,6 +6,8 @@ TagManager:
   tags:
   - FightGround
   - Enemy
+  - Bullet
+  - EnemyProjectile
   layers:
   - Default
   - TransparentFX
