@@ -5,6 +5,9 @@ public class PlayerMovement : MonoBehaviour
     public float moveSpeed = 5f;  // Speed of the player
     public float gravity = -9.8f; // Gravity for the player
     public float jumpHeight = 2f; // Jump height
+    [SerializeField]
+    Animator animator;
+    private bool flipCharacter;
 
     private CharacterController characterController;
     private Vector3 velocity;
@@ -13,6 +16,7 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         characterController = GetComponent<CharacterController>();
+        flipCharacter = false;
     }
 
     void Update()
@@ -26,6 +30,16 @@ public class PlayerMovement : MonoBehaviour
 
         // Calculate the movement vector
         Vector3 move = new Vector3(horizontal, 0f, vertical).normalized;
+        if (move.x < 0 && flipCharacter == false)
+        {
+            animator.gameObject.transform.localScale = new Vector3(-0.5f, 0.5f, 0.5f);
+            flipCharacter = true;
+        }
+        else if (move.x > 0 && flipCharacter == true)
+        {
+            animator.gameObject.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+            flipCharacter = false;
+        }
 
         // Apply movement directly in the input direction (WASD controls)
         characterController.Move(move * moveSpeed * Time.deltaTime);
@@ -50,6 +64,9 @@ public class PlayerMovement : MonoBehaviour
 
         // Apply vertical movement (gravity and jumping)
         characterController.Move(velocity * Time.deltaTime);
+
+        animator.SetFloat("Speed", Mathf.Abs(move.x));
+        Debug.Log(Mathf.Abs(move.x));
     }
 
     // Function to make the player face the cursor
