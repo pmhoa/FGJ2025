@@ -14,7 +14,9 @@ Temp/
 FGJ2025/Library/
 /Library/
 .obj/
-
+# Ignore baked lighting textures
+[Ll]ightmap*
+[Ll]ightingData.asset
 
 # MemoryCaptures can get excessive in size.
 # They also could contain extremely sensitive data
@@ -76,3 +78,7 @@ crashlytics-build.properties
 # Temporary auto-generated Android Assets
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
+ProjectSettings/Packages/com.unity.testtools.codecoverage/Settings.json
+Packages/manifest.json
+Packages/packages-lock.json
+ProjectSettings/Packages/com.unity.testtools.codecoverage/Settings.json
