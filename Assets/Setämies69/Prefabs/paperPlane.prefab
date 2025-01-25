@@ -78,5 +78,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lifetime: 3
-  forwardSpeed: 17
+  forwardSpeed: 10
   fallSpeed: 2
