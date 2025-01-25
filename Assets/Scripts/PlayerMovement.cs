@@ -6,8 +6,8 @@ public class PlayerMovement : MonoBehaviour
     public float moveSpeed = 5f;  // Speed of the player
     public float gravity = -9.8f; // Gravity for the player
     public float jumpHeight = 2f; // Jump height
-    int health = 3;
-    int gameEndDelay = 3;
+    public int health = 3;
+    public int gameEndDelay = 3;
 
     private CharacterController characterController;
     private Vector3 velocity;
