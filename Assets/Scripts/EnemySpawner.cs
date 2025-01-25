@@ -8,6 +8,8 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField]
     private GameObject enemy;
     [SerializeField]
+    private GameObject projectileEnemy;
+    [SerializeField]
     private float distance;
     [SerializeField]
     private float timeBetweenSpawns;
@@ -50,7 +52,15 @@ public class EnemySpawner : MonoBehaviour
 
     void SpawnEnemy(Vector3 position)
     {
-        Debug.Log(position);
-        Instantiate(enemy, position, Quaternion.identity);
+        int enemyNumber = (Random.Range(0, 2));
+        Debug.Log(enemyNumber);
+        if (enemyNumber == 0) 
+        {
+            Instantiate(enemy, position, Quaternion.identity);
+        }
+        if (enemyNumber == 1)
+        {
+            Instantiate(projectileEnemy, position, Quaternion.identity);
+        }
     }
 }
