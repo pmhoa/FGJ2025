@@ -134,6 +134,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: guineapig
       objectReference: {fileID: 0}
+    - target: {fileID: -8653719598885068355, guid: a0686db866f23f24f9d9c2ce79d7f3d8, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: a0686db866f23f24f9d9c2ce79d7f3d8, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.5
@@ -152,7 +156,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: a0686db866f23f24f9d9c2ce79d7f3d8, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.388
+      value: -0.237
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: a0686db866f23f24f9d9c2ce79d7f3d8, type: 3}
       propertyPath: m_LocalPosition.z
@@ -213,6 +217,10 @@ PrefabInstance:
     - target: {fileID: 386791141387813222, guid: a0686db866f23f24f9d9c2ce79d7f3d8, type: 3}
       propertyPath: m_Name
       value: TORSO_BONE
+      objectReference: {fileID: 0}
+    - target: {fileID: 2776658901713205944, guid: a0686db866f23f24f9d9c2ce79d7f3d8, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2805404538631728759, guid: a0686db866f23f24f9d9c2ce79d7f3d8, type: 3}
       propertyPath: m_Name
@@ -1748,7 +1756,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1022965770858820101, guid: 80786c98f0946cd4db0d61261caab9cc, type: 3}
       propertyPath: distanceFromPlayerY
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4724055647412154022, guid: 80786c98f0946cd4db0d61261caab9cc, type: 3}
       propertyPath: m_LocalPosition.x
