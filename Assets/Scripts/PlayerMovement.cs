@@ -1,14 +1,20 @@
 using UnityEngine;
 
+using System.Collections;
 public class PlayerMovement : MonoBehaviour
 {
     public float moveSpeed = 5f;  // Speed of the player
     public float gravity = -9.8f; // Gravity for the player
     public float jumpHeight = 2f; // Jump height
+    int health = 3;
+    int gameEndDelay = 3;
 
     private CharacterController characterController;
     private Vector3 velocity;
     private bool isGrounded;
+    private Coroutine deathCorotine;
+
+    public GameObject endGameObject;
 
     void Start()
     {
@@ -40,16 +46,21 @@ public class PlayerMovement : MonoBehaviour
         }
 
         // Jump
-        if (isGrounded && Input.GetButtonDown("Jump"))
-        {
-            velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
-        }
+        //if (isGrounded && Input.GetButtonDown("Jump"))
+        //{
+        //    velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+        //}
 
         // Apply gravity to the vertical velocity
         velocity.y += gravity * Time.deltaTime;
 
         // Apply vertical movement (gravity and jumping)
         characterController.Move(velocity * Time.deltaTime);
+
+        if (health <= 0)
+        {
+            deathCorotine = StartCoroutine(DeathRoutine());
+        }
     }
 
     // Function to make the player face the cursor
@@ -71,6 +82,22 @@ public class PlayerMovement : MonoBehaviour
         {
             Quaternion targetRotation = Quaternion.LookRotation(directionToCursor);
             transform.rotation = targetRotation; // Snap to the direction of the cursor
+        }
+
+        
+    }
+
+    private IEnumerator DeathRoutine()
+    {
+            yield return new WaitForSeconds(gameEndDelay);
+            endGameObject.SetActive(true);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Enemy" || other.tag == "EnemyProjectile")
+        {
+            health--;
         }
     }
 }
