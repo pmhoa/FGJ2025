@@ -5,7 +5,11 @@ using UnityEngine;
 public class BombScript : MonoBehaviour
 {
     public GameObject bombExplosion;
-
+    public float delayTime = 2f;
+    private void Start()
+    {
+        Invoke("InstantiateExplosionAfterTime", delayTime);
+    }
     // Update is called once per frame
     void Update()
     {
@@ -15,5 +19,11 @@ public class BombScript : MonoBehaviour
 
             Destroy(gameObject);
         }
+    }
+    void InstantiateExplosionAfterTime()
+    {
+        Instantiate(bombExplosion, transform.position, transform.rotation);
+
+        Destroy(gameObject);
     }
 }

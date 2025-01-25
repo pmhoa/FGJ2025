@@ -30,6 +30,7 @@ public class FollowCursorAtDistanceWithSpawnAndShoot : MonoBehaviour
     public bool hasExploded = true;
     public float bombSpeed = 5f;
     public GameObject bombPrefab;
+    public float bombRearmDelayTime = 2f;
 
 
     void Update()
@@ -87,6 +88,8 @@ public class FollowCursorAtDistanceWithSpawnAndShoot : MonoBehaviour
         // Calculate the position 2 units away from the player in the direction of the cursor
         Vector3 targetPosition = player.position + directionToCursor * distanceFromPlayer;
         targetPosition.y = targetPosition.y + distanceFromPlayerY;
+
+
         // Set the object's position to the target position
         transform.position = targetPosition;
 
@@ -155,6 +158,7 @@ public class FollowCursorAtDistanceWithSpawnAndShoot : MonoBehaviour
             // Set the velocity of the projectile to shoot towards the cursor
             rb.velocity = shootDirection * bombSpeed;
             hasExploded = false;
+            Invoke("InstantiateObject", bombRearmDelayTime);
         }
         else
         {
@@ -162,8 +166,10 @@ public class FollowCursorAtDistanceWithSpawnAndShoot : MonoBehaviour
         }
     }
 
-
-
+    void InstantiateObject()
+    {
+        hasExploded = true;
+    }
 
 
 
