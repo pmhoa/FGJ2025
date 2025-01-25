@@ -46,6 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   basicKuplaPrefab: {fileID: 7751838347709124576, guid: ff7bfa696a758e04786ec8e8a5ae3c76, type: 3}
+  shootCooldownBasic: 0.5
   distanceFromPlayer: 2
   projectileSpeed: 20
   chosenWeapon: 1
@@ -54,3 +55,7 @@ MonoBehaviour:
   minePrefab: {fileID: 1275649818637943315, guid: 0ca61b1ff04bede45838dbabf8e96183, type: 3}
   shootingPoint: {fileID: 4724055647412154022}
   launchAngle: 45
+  maxRange: 50
+  hasExploded: 1
+  bombSpeed: 5
+  bombPrefab: {fileID: 4994664465719903031, guid: b48e711cf2bdbc64cb3e6278ff168554, type: 3}
