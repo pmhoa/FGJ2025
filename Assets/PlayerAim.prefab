@@ -45,8 +45,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  objectToSpawn: {fileID: 7751838347709124576, guid: ff7bfa696a758e04786ec8e8a5ae3c76, type: 3}
+  basicKuplaPrefab: {fileID: 7751838347709124576, guid: ff7bfa696a758e04786ec8e8a5ae3c76, type: 3}
   distanceFromPlayer: 2
   projectileSpeed: 20
   chosenWeapon: 1
   foamToSpawn: {fileID: 7751838347709124576, guid: 5662df4a420ea41438d3b337c6a0d348, type: 3}
+  foamShootRate: 0.1
+  minePrefab: {fileID: 1275649818637943315, guid: 0ca61b1ff04bede45838dbabf8e96183, type: 3}
+  shootingPoint: {fileID: 4724055647412154022}
+  launchAngle: 45

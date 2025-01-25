@@ -340,6 +340,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: LEFT_EAR_BONE
       objectReference: {fileID: 0}
+    - target: {fileID: 4257508509235537429, guid: a0686db866f23f24f9d9c2ce79d7f3d8, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.1899254
+      objectReference: {fileID: 0}
+    - target: {fileID: 4257508509235537429, guid: a0686db866f23f24f9d9c2ce79d7f3d8, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.12576
+      objectReference: {fileID: 0}
     - target: {fileID: 4353483144141797522, guid: a0686db866f23f24f9d9c2ce79d7f3d8, type: 3}
       propertyPath: m_Name
       value: FOOT_RIGHT_TOES
