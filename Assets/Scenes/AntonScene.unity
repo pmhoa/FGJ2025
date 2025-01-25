@@ -280,6 +280,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: FOOT_RIGHT_BONE
       objectReference: {fileID: 0}
+    - target: {fileID: -5498823842201366562, guid: a0686db866f23f24f9d9c2ce79d7f3d8, type: 3}
+      propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: -5220952953242662745, guid: a0686db866f23f24f9d9c2ce79d7f3d8, type: 3}
       propertyPath: m_Name
       value: FOOT_LEFT_TOES
@@ -510,6 +514,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: kamikaze_enemy_merged
       objectReference: {fileID: 0}
+    - target: {fileID: -7694217771748202108, guid: 608a781065a34d649a0c978f71105de2, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -7694217771748202108, guid: 608a781065a34d649a0c978f71105de2, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: 608a781065a34d649a0c978f71105de2, type: 3}
       propertyPath: m_LocalPosition.x
       value: -5.71
@@ -549,6 +561,22 @@ PrefabInstance:
     - target: {fileID: -7552582706839291426, guid: 608a781065a34d649a0c978f71105de2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1892778982348990733, guid: 608a781065a34d649a0c978f71105de2, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1892778982348990733, guid: 608a781065a34d649a0c978f71105de2, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4257508509235537429, guid: 608a781065a34d649a0c978f71105de2, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.4004746
+      objectReference: {fileID: 0}
+    - target: {fileID: 4257508509235537429, guid: 608a781065a34d649a0c978f71105de2, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.9163079
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
