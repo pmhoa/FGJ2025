@@ -5,6 +5,11 @@ public class FollowCursorAtDistanceWithSpawnAndShoot : MonoBehaviour
 {
     public Transform player; // Reference to the player's transform
     public GameObject basicKuplaPrefab; // The projectile you want to spawn
+
+    public float shootCooldownBasic = 0.5f; // Cooldown time in seconds
+    private float lastShootTimeBasic = 0f; // Time when the last shot was fired
+
+
     public float distanceFromPlayer = 2f; // Distance away from the player (in units)
     public float projectileSpeed = 10f; // Speed at which the projectile moves
     public int chosenWeapon = 1;
@@ -20,6 +25,10 @@ public class FollowCursorAtDistanceWithSpawnAndShoot : MonoBehaviour
     public float launchAngle = 45f;
     public float maxRange = 50f;
 
+
+    public bool hasExploded = true;
+    public float bombSpeed = 5f;
+    public GameObject bombPrefab;
 
 
     void Update()
@@ -43,11 +52,11 @@ public class FollowCursorAtDistanceWithSpawnAndShoot : MonoBehaviour
             chosenWeapon = 3;
             Debug.Log("Value changed to: " + chosenWeapon);
         }
-        //if (Input.GetKeyDown(KeyCode.Alpha4))  // Key 4 pressed
-        //{
-        //    chosenWeapon = 4;
-        //    Debug.Log("Value changed to: " + chosenWeapon);
-        //}
+        if (Input.GetKeyDown(KeyCode.Alpha4))  // Key 4 pressed
+        {
+            chosenWeapon = 4;
+            Debug.Log("Value changed to: " + chosenWeapon);
+        }
 
 
 
@@ -83,9 +92,10 @@ public class FollowCursorAtDistanceWithSpawnAndShoot : MonoBehaviour
         // Check if the player clicked the mouse (left button)
         if (Input.GetMouseButtonDown(0)) // Left click (0)
         {
-            if(chosenWeapon == 1)
+            if(chosenWeapon == 1 && Time.time >= lastShootTimeBasic + shootCooldownBasic)
             {
                 SpawnAndShootProjectile(targetPosition, directionToCursor);
+                lastShootTimeBasic = Time.time;
             }
 
             else if (chosenWeapon == 2) // 2 is foam gun
@@ -101,6 +111,20 @@ public class FollowCursorAtDistanceWithSpawnAndShoot : MonoBehaviour
             {
                 ShootMine();
             }
+
+            else if (chosenWeapon == 4)
+            {
+                if(hasExploded == true)
+                {
+                    ShootBomb(targetPosition, directionToCursor);
+                }
+                else
+                {
+                    hasExploded = true;
+                }
+                
+
+            }
             
         }
         if (Input.GetMouseButtonUp(0) && chosenWeapon == 2)
@@ -112,6 +136,38 @@ public class FollowCursorAtDistanceWithSpawnAndShoot : MonoBehaviour
             }
         }
     }
+
+    void ShootBomb(Vector3 spawnPosition, Vector3 shootDirection)
+    {
+        if (bombPrefab != null)
+        {
+            // Instantiate the projectile at the target position with no rotation
+            GameObject projectile = Instantiate(bombPrefab, spawnPosition, Quaternion.identity);
+
+            // Add a Rigidbody to the projectile if it doesn't have one (you can remove this if your projectile already has a Rigidbody)
+            Rigidbody rb = projectile.GetComponent<Rigidbody>();
+            if (rb == null)
+            {
+                rb = projectile.AddComponent<Rigidbody>(); // Add Rigidbody if it doesn't exist
+            }
+
+            // Set the velocity of the projectile to shoot towards the cursor
+            rb.velocity = shootDirection * bombSpeed;
+            hasExploded = false;
+        }
+        else
+        {
+            Debug.LogWarning("No object assigned to spawn!");
+        }
+    }
+
+
+
+
+
+
+
+
 
 
     void ShootMine()
