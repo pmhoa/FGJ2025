@@ -82,7 +82,7 @@ public class EnemyMovement : MonoBehaviour
             flipCharacter = false;
         }
 
-        if(projectiles)
+        if(projectiles && dead == false)
         {
             projectileTimer -= Time.deltaTime;
 
