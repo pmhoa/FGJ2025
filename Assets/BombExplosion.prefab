@@ -206,7 +206,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   growthSpeed: 2
   maxScale: 10
-  destroyDelay: 20
+  destroyDelay: 1.7
 --- !u!114 &4041897510120810949
 MonoBehaviour:
   m_ObjectHideFlags: 0
