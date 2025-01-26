@@ -116,12 +116,12 @@ public class FollowCursorAtDistanceWithSpawnAndShoot : MonoBehaviour
                 }
                 
             }
-            else if (chosenWeapon == 3)
-            {
-                ShootMine();
-            }
+            //else if (chosenWeapon == 3)
+            //{
+            //    ShootMine();
+            //}
 
-            else if (chosenWeapon == 4)
+            else if (chosenWeapon == 3)
             {
                 if(hasExploded == true)
                 {

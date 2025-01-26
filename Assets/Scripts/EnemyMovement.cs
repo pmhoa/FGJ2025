@@ -14,6 +14,8 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField]
     private float foamDamage;
     [SerializeField]
+    private float bombDamage;
+    [SerializeField]
     private float floatingSpeed;
     [SerializeField]
     private bool projectiles;
@@ -57,6 +59,11 @@ public class EnemyMovement : MonoBehaviour
         {
             TakeDamage(foamDamage);
             Destroy(other.gameObject);
+        }
+
+        if (other.CompareTag("BombExplosion"))
+        {
+            TakeDamage(bombDamage);
         }
     }
 
