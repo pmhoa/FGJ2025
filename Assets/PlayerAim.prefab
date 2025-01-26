@@ -47,15 +47,17 @@ MonoBehaviour:
   player: {fileID: 0}
   basicKuplaPrefab: {fileID: 7751838347709124576, guid: ff7bfa696a758e04786ec8e8a5ae3c76, type: 3}
   shootCooldownBasic: 0.5
-  distanceFromPlayer: 2
+  distanceFromPlayer: 4
+  distanceFromPlayerY: 2
   projectileSpeed: 20
   chosenWeapon: 1
   foamToSpawn: {fileID: 7751838347709124576, guid: 5662df4a420ea41438d3b337c6a0d348, type: 3}
   foamShootRate: 0.1
-  minePrefab: {fileID: 1275649818637943315, guid: 0ca61b1ff04bede45838dbabf8e96183, type: 3}
+  minePrefab: {fileID: 9217635657479484647, guid: 58c91d16c02f70943affbdf4760a3281, type: 3}
   shootingPoint: {fileID: 4724055647412154022}
   launchAngle: 45
   maxRange: 50
   hasExploded: 1
   bombSpeed: 5
   bombPrefab: {fileID: 4994664465719903031, guid: b48e711cf2bdbc64cb3e6278ff168554, type: 3}
+  bombRearmDelayTime: 2

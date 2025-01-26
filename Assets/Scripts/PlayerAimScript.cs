@@ -168,15 +168,13 @@ public class FollowCursorAtDistanceWithSpawnAndShoot : MonoBehaviour
             // Set the velocity of the projectile to shoot towards the cursor
             rb.velocity = shootDirection * bombSpeed;
             hasExploded = false;
-            Invoke("InstantiateObject", bombRearmDelayTime);
+            Invoke("InstantiateExplosionAfterTime", bombRearmDelayTime);
         }
         else
         {
             Debug.LogWarning("No object assigned to spawn!");
         }
     }
-
-
 
 
 
