@@ -1868,6 +1868,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerAim
       objectReference: {fileID: 0}
+    - target: {fileID: 8259303239431857026, guid: 80786c98f0946cd4db0d61261caab9cc, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2231,13 +2235,25 @@ PrefabInstance:
       propertyPath: deadFace
       value: 
       objectReference: {fileID: 126135343}
+    - target: {fileID: 952783991450869199, guid: db44912670538ab4cba65c4f7850deae, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2024118031300360175, guid: db44912670538ab4cba65c4f7850deae, type: 3}
       propertyPath: m_Size.y
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2024118031300360175, guid: db44912670538ab4cba65c4f7850deae, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2024118031300360175, guid: db44912670538ab4cba65c4f7850deae, type: 3}
       propertyPath: m_Center.y
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2024118031300360175, guid: db44912670538ab4cba65c4f7850deae, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4168986023587614696, guid: db44912670538ab4cba65c4f7850deae, type: 3}
       propertyPath: m_Height
@@ -2249,11 +2265,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6286568695857266766, guid: db44912670538ab4cba65c4f7850deae, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -0.08
       objectReference: {fileID: 0}
     - target: {fileID: 6286568695857266766, guid: db44912670538ab4cba65c4f7850deae, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.83
       objectReference: {fileID: 0}
     - target: {fileID: 6286568695857266766, guid: db44912670538ab4cba65c4f7850deae, type: 3}
       propertyPath: m_LocalPosition.z

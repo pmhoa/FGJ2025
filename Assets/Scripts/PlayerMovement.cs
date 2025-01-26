@@ -4,8 +4,6 @@ using System.Collections;
 public class PlayerMovement : MonoBehaviour
 {
     public float moveSpeed = 5f;  // Speed of the player
-    public float gravity = -9.8f; // Gravity for the player
-    public float jumpHeight = 2f; // Jump height
     public int health = 3;
     public int gameEndDelay = 3;
     [SerializeField]
@@ -17,10 +15,10 @@ public class PlayerMovement : MonoBehaviour
     private bool dead;
     private CharacterController characterController;
     private Vector3 velocity;
-    private bool isGrounded;
+    //private bool isGrounded;
     private Coroutine deathCorotine;
 
-    public GameObject endGameObject;
+    //public GameObject endGameObject;
 
     void Start()
     {
@@ -32,7 +30,7 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         // Check if the player is grounded
-        isGrounded = characterController.isGrounded;
+        //isGrounded = characterController.isGrounded;
 
         // Get input for movement (WASD or arrow keys)
         float horizontal = Input.GetAxis("Horizontal");
@@ -60,11 +58,11 @@ public class PlayerMovement : MonoBehaviour
             // If there is movement, snap the player to face the cursor
             FaceTowardsCursor();
 
-            // Handle gravity
-            if (isGrounded && velocity.y < 0)
-            {
-                velocity.y = -2f; // Keep the player grounded
-            }
+            //// Handle gravity
+            //if (isGrounded && velocity.y < 0)
+            //{
+            //    velocity.y = -2f; // Keep the player grounded
+            //}
 
             // Jump
             //if (isGrounded && Input.GetButtonDown("Jump"))
@@ -73,7 +71,7 @@ public class PlayerMovement : MonoBehaviour
             //}
 
             // Apply gravity to the vertical velocity
-            velocity.y += gravity * Time.deltaTime;
+            //velocity.y += gravity * Time.deltaTime;
 
             // Apply vertical movement (gravity and jumping)
             characterController.Move(velocity * Time.deltaTime);
@@ -86,8 +84,11 @@ public class PlayerMovement : MonoBehaviour
             animator.SetFloat("Speed", Mathf.Abs(move.x));
             animator.SetFloat("SpeedVertical", Mathf.Abs(move.z));
         }
+        if(dead == true)
+        {
+            animator.SetBool("Dead", dead);
+        }
 
-        animator.SetBool("Dead", dead);
 
     }
 
@@ -127,6 +128,14 @@ public class PlayerMovement : MonoBehaviour
         if (other.tag == "Enemy" || other.tag == "EnemyProjectile")
         {
             health--;
+            CharacterController cC = GetComponent<CharacterController>();
+            //Rigidbody rb = GetComponent<Rigidbody>();
+            Vector3 forceDir = other.transform.forward;
+            forceDir.y = 0;
+            cC.Move(forceDir * 100f * Time.deltaTime);
+            Destroy(other.gameObject);
+            //cC.AddForce(forceDir.normalized * 100f, ForceMode.Impulse);
+
         }
     }
 }
