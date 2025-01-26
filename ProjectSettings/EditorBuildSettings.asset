@@ -4,5 +4,11 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: "Assets/Set\xE4mies69/MainMenu_HOA.unity"
+    guid: e59d4d27df062f94cbd50efee953bc6c
+  - enabled: 1
+    path: "Assets/Set\xE4mies69/Scene_Credits.unity"
+    guid: 3327a9e0a93f12946853b56ae102c452
   m_configObjects: {}
