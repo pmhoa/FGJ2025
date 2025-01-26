@@ -12,6 +12,8 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField]
     private float bulletDamage;
     [SerializeField]
+    private float foamDamage;
+    [SerializeField]
     private float floatingSpeed;
     [SerializeField]
     private bool projectiles;
@@ -49,6 +51,11 @@ public class EnemyMovement : MonoBehaviour
         if (other.CompareTag("Bullet"))
         {
             TakeDamage(bulletDamage);
+            Destroy(other.gameObject);
+        }
+        if (other.CompareTag("FoamBubble"))
+        {
+            TakeDamage(foamDamage);
             Destroy(other.gameObject);
         }
     }
@@ -92,7 +99,7 @@ public class EnemyMovement : MonoBehaviour
     void TakeDamage( float damageAmount)
     {
         health -= damageAmount;
-        if(health < 0f)
+        if(health <= 0f)
         {
             health = 0f;
             Die();

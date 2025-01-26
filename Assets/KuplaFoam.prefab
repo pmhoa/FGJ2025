@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 6800801280918890467}
   m_Layer: 0
   m_Name: KuplaFoam
-  m_TagString: Untagged
+  m_TagString: FoamBubble
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
