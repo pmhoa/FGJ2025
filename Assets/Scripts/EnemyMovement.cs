@@ -27,6 +27,8 @@ public class EnemyMovement : MonoBehaviour
     private GameObject projectile;
     [SerializeField]
     private float projectileSpeed;
+    [SerializeField]
+    private GameObject michaelBubble;
 
     private float projectileTimer;
     private NavMeshAgent enemy;
@@ -118,6 +120,7 @@ public class EnemyMovement : MonoBehaviour
         enemy.isStopped = true;
         dead = true;
         enemy.enabled = false;
+        michaelBubble.SetActive(true);
         gameObject.GetComponent<Collider>().enabled = false;
         Destroy(gameObject, 5);
     }
