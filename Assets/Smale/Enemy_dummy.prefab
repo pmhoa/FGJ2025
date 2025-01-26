@@ -71,6 +71,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 100
   bulletDamage: 50
+  foamDamage: 10
   floatingSpeed: 10
   projectiles: 0
   projectileCoolDown: 0

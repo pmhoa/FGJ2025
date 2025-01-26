@@ -13,11 +13,6 @@ public class MineScript : MonoBehaviour
     private Vector3 minePos;
 
 
-    public MeshRenderer rend;
-    public Material[] mats;
-
-    public int matnum;
-
 
     void Start()
     {
@@ -62,10 +57,6 @@ public class MineScript : MonoBehaviour
         }
     }
 
-    void matswap1()
-    {
-        rend.material = mats[1];
-    }
 
     // Coroutine to stop movement after the specified delay
     private IEnumerator ArmMineCoroutine()
@@ -74,7 +65,6 @@ public class MineScript : MonoBehaviour
         yield return new WaitForSeconds(delayTime);
 
         isArmed = true;
-        matswap1();
        
     }
 
