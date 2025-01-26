@@ -1,6 +1,7 @@
 using UnityEngine;
 
 using System.Collections;
+using UnityEngine.SceneManagement;
 public class PlayerMovement : MonoBehaviour
 {
     public float moveSpeed = 5f;  // Speed of the player
@@ -140,7 +141,8 @@ public class PlayerMovement : MonoBehaviour
     {
         deadFace.SetActive(true);    
         yield return new WaitForSeconds(gameEndDelay);
-            //endGameObject.SetActive(true);
+        SceneManager.LoadScene("Smale");
+        //endGameObject.SetActive(true);
     }
 
     private void OnTriggerEnter(Collider other)
