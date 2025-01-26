@@ -18,6 +18,9 @@ public class PlayerMovement : MonoBehaviour
     //private bool isGrounded;
     private Coroutine deathCorotine;
 
+    private Vector3 impactForce = Vector3.zero; // Force to be applied over time
+    public float forceStrength = 10f; // Magnitude of the force
+
     //public GameObject endGameObject;
 
     void Start()
@@ -57,6 +60,23 @@ public class PlayerMovement : MonoBehaviour
 
             // If there is movement, snap the player to face the cursor
             FaceTowardsCursor();
+
+
+
+
+            if (impactForce.magnitude > 0.1f)
+            {
+                characterController.Move(impactForce * Time.deltaTime);
+                // Gradually reduce the force (dampening effect)
+                impactForce = Vector3.Lerp(impactForce, Vector3.zero, 5f * Time.deltaTime);
+            }
+
+
+
+
+
+
+
 
             //// Handle gravity
             //if (isGrounded && velocity.y < 0)
@@ -128,11 +148,18 @@ public class PlayerMovement : MonoBehaviour
         if (other.tag == "Enemy" || other.tag == "EnemyProjectile")
         {
             health--;
-            CharacterController cC = GetComponent<CharacterController>();
+
+            Vector3 forceDirection = (transform.position - other.transform.position).normalized;
+
+            // Apply force
+            impactForce = forceDirection * forceStrength;
+            impactForce.y = 0;
+
+            //CharacterController cC = GetComponent<CharacterController>();
             //Rigidbody rb = GetComponent<Rigidbody>();
-            Vector3 forceDir = other.transform.forward;
-            forceDir.y = 0;
-            cC.Move(forceDir * 100f * Time.deltaTime);
+            //Vector3 forceDir = other.transform.forward * forceStrength;
+            //forceDir.y = 0;
+            //cC.Move(forceDir * 100f * Time.deltaTime);
             Destroy(other.gameObject);
             //cC.AddForce(forceDir.normalized * 100f, ForceMode.Impulse);
 
