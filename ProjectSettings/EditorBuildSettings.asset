@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: "Assets/Set\xE4mies69/Scene_Credits.unity"
     guid: 3327a9e0a93f12946853b56ae102c452
+  - enabled: 1
+    path: Assets/Scenes/Smale.unity
+    guid: a9f3da83ac444af4baf83c72de1562b1
   m_configObjects: {}

@@ -1,7 +1,6 @@
 using UnityEngine;
-
-using System.Collections;
 using UnityEngine.SceneManagement;
+using System.Collections;
 public class PlayerMovement : MonoBehaviour
 {
     public float moveSpeed = 5f;  // Speed of the player
@@ -141,7 +140,7 @@ public class PlayerMovement : MonoBehaviour
     {
         deadFace.SetActive(true);    
         yield return new WaitForSeconds(gameEndDelay);
-        SceneManager.LoadScene("Smale");
+        SceneManager.LoadScene(0);
         //endGameObject.SetActive(true);
     }
 
