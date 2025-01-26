@@ -1,5 +1,5 @@
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 using System.Collections;
 public class PlayerMovement : MonoBehaviour
 {
@@ -140,7 +140,8 @@ public class PlayerMovement : MonoBehaviour
     {
         deadFace.SetActive(true);    
         yield return new WaitForSeconds(gameEndDelay);
-            //endGameObject.SetActive(true);
+        SceneManager.LoadScene(0);
+        //endGameObject.SetActive(true);
     }
 
     private void OnTriggerEnter(Collider other)
