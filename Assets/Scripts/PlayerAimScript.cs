@@ -121,19 +121,19 @@ public class FollowCursorAtDistanceWithSpawnAndShoot : MonoBehaviour
             //    ShootMine();
             //}
 
-            else if (chosenWeapon == 3)
-            {
-                if(hasExploded == true)
-                {
-                    ShootBomb(targetPosition, directionToCursor);
-                }
-                else
-                {
-                    hasExploded = true;
-                }
+            //else if (chosenWeapon == 3)
+            //{
+            //    if(hasExploded == true)
+            //    {
+            //        ShootBomb(targetPosition, directionToCursor);
+            //    }
+            //    else
+            //    {
+            //        hasExploded = true;
+            //    }
                 
 
-            }
+            //}
             
         }
         if (Input.GetMouseButtonUp(0))
